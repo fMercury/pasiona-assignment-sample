@@ -11,9 +11,21 @@ app.use((req, res, next) => {
     next();
 });
 
+let routes = require('./routes/routes');
+routes(app);
+
+
+app.get('/noauth',
+    (req, res) => res.json('no authenticated')
+);
+app.get('/noadmin',
+    (req, res) => res.json('action no authorized')
+);
+
 app.use('/',
     (req, res) => res.json('version:' + '0001')
 );
+
 
 app.use((req, res) => res.status(404).send({ url: req.originalUrl + 'NOT FOUND' }));
 
