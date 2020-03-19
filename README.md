@@ -59,3 +59,18 @@ userByPolicyNumber
 http://127.0.0.1:5000/userByPolicyNumber/7b624ed3-00d5-4c1b-9ab8-c265067ef58b
 http://127.0.0.1:5000/userByPolicyNumber/64cceef9-3a01-49ae-a23b-3761b604800b
 
+
+One approach to implementing authentication and authorization would be:
+
+develop a login method that asks the user for the email,
+If the user is registered, generate a token for this user and send an email with the link.
+
+Once the user enters through this link, use sessions to record the user's information.
+
+Users and administrators should have two different dashboards with the different actions they can take.
+
+The scheme for using a database would include two tables for users and policies.
+
+The user's schema should contain two additional fields that record the valid access token for the user and the date of the last access.
+
+The policy scheme would remain similar to the data structure sent by the current endpoint.
