@@ -33,6 +33,7 @@ function getUsers(req, filter, callback) {
     
     }
 }    
+exports.getUsers = getUsers
 
 function selectUsersById(users, req) {
     const results = []
@@ -42,6 +43,7 @@ function selectUsersById(users, req) {
     })        
     return results
 }    
+exports.selectUsersById = selectUsersById
 
 function selectUsersByName (users, req) {
     const results = []
@@ -51,6 +53,7 @@ function selectUsersByName (users, req) {
     })        
     return results
 }    
+exports.selectUsersByName = selectUsersByName
 
 exports.getUserById = (req, res) => {
     getUsers(req, selectUsersById, (results) => {
@@ -104,6 +107,7 @@ function getPolicies(req, filter, callback) {
 
     } 
 }
+exports.getPolicies = getPolicies
 
 function selectPoliciesByClientId(policies, clientId) {
     const results = []
@@ -122,6 +126,7 @@ function selectPolicyById(policies, req) {
     })
     return results
 }
+exports.selectPolicyById = selectPolicyById
 
 function selectUsersByClientId(users, clientId) {
     const results = []
@@ -131,6 +136,7 @@ function selectUsersByClientId(users, clientId) {
     })
     return results
 }    
+exports.selectUsersByClientId = selectUsersByClientId
 
 exports.getPoliciesByUserName = (req, res) => {
 
