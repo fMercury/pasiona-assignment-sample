@@ -39,8 +39,9 @@ One approach to implementing authentication and authorization would be:
 
 
 Solution implemented:
-Administrators can run queries for any user or policy
+Administrators can run queries for any user or policy.
 Ordinary users cannot access information from other users.
+If the URL is incorrect, the server automatically redirects to the dashboard corresponding to the type of user logged in or to the login page. To change user, you have to go to login site and enter different user information. User session data will be updated with the last token accessed.
 
 
 Endpoints: 

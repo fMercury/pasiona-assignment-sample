@@ -27,14 +27,15 @@ app.use(bodyParser.json());
 app.use(session({ secret: process.env.JWT_SECRET, cookie: { maxAge: 60 * 60 * 1000 * 24 } })); // // expires in 24 hour
 app.set('secret', process.env.JWT_SECRET);
 
-let routes = require('./routes/routes');
-routes(app);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.use(express.static(path.join(__dirname, './public')));
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////    
+
+let routes = require('./routes/routes');
+routes(app);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.use((req, res) => {
     res.status(404).send({ url: req.originalUrl + 'NOT FOUND' })
