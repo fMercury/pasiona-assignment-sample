@@ -1,0 +1,20 @@
+<div class="text-center">
+  <br><br>
+  <h4>You are logged like USER with: {{{email}}}</h4>
+  <br><br>
+</div>
+
+<div class="text-left">
+  <form class="border p-5 form" method="get" action="/usersById">
+    <label for="text">User ID: {{{id}}}</label>
+    <input type="hidden" id="id" name="user_id" value={{{id}}}><br><br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit"> Show User Info By Id </button>
+  </form>
+
+  <form class="border p-5 form" method="get" action="/usersByName">
+    <label for="text">User Name: {{{name}}}</label>
+    <input type="hidden" id="name" name="user_name" value={{{name}}}><br><br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit"> Show User Info By Name </button>
+  </form>
+
+</div>
