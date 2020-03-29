@@ -32,13 +32,13 @@ app.use(express.static(path.join(__dirname, './public')));
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////    
 
-let clientRoutes = require('./routes/clientRoute');
+let clientRoutes = require('./interface/routes/client/index');
 clientRoutes(app);
 
-let policyRoutes = require('./routes/PolicyRoute');
+let policyRoutes = require('./interface/routes/policy/index');
 policyRoutes(app);
 
-let authRoutes = require('./routes/authRoute');
+let authRoutes = require('./interface/routes/authRoute');
 authRoutes(app);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////

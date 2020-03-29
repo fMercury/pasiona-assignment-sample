@@ -1,15 +1,15 @@
 'use strict';
 require('dotenv').config()
-let client = require('./clientController.js');
+let client = require('../../logic/client/getUsers.js');
+let clientsService = require('../../data/services/clientService.js');
 let jwt = require('jsonwebtoken');
 const session = require('express-session');
 session({ secret: process.env.JWT_SECRET, cookie: { maxAge: 60 * 60 * 1000 * 24 } }); // // expires in 24 hour
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.auth = (req, res) => {
-    const email = req.query.email;
+    const email = req.body.email;
 
-    client.getUsers(email, client.selectUsersByEmail, (result) => {
+    client.getUsers(email, clientsService.selectUsersByEmail, (result) => {
         if (result != undefined) {
 
             if (result.length == 1 && result[0]['email'] === email) {
@@ -55,7 +55,7 @@ exports.login = (req, res) => {
         const token = req.params.token;
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        client.getUsers(decoded.user_data.email, client.selectUsersByEmail, (result) => {
+        client.getUsers(decoded.user_data.email, clientsService.selectUsersByEmail, (result) => {
             if (result != undefined) {
                 if (result.length == 1) {
                     // if (result[0]['token'] === token) {
