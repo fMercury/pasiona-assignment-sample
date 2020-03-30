@@ -10,7 +10,7 @@ module.exports = function (app) {
     app.route('/auth/')
         .post(auth.auth)
 
-    app.route('/login/:token/')
+    app.route('/loged/')
         .get(auth.login)
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -3,23 +3,23 @@
 const middlewares = {
 
     checkAdminAuth: function (req, res, next) {
-        if (req.session.admin_token && req.session.admin_token.user_data.role == 'admin') {
+        if (req.session.admin_token || req.get("Authorization")) {
             next();
         } else {
-            res.send('You are not authorized to view this page');
+            res.send('You are not authorized to view this page .');
         }
     },
 
     checkAuth: function (req, res, next) {
-        if (req.session.user_token || req.session.admin_token) {
+        if (req.session.user_token || req.session.admin_token || req.get("Authorization")) {
             next();
         } else {
-            res.send('You are not authorized to view this page');
+            res.send('You are not authorized to view this page.');
         }
     },
 
     checkPassQuery: function (req, res, next) {
-        if (req.session.admin_token && req.session.admin_token.user_data.role == 'admin') {
+        if (req.session.admin_token || req.get("Authorization")) {
             next();
         }
 
@@ -39,11 +39,11 @@ const middlewares = {
                 }
             } catch (error) {
                 console.log("WARNING:" + error)
-                res.send("WARNING:" + error);
             }
         }
     },
 };
+
 
 module.exports = middlewares;
 

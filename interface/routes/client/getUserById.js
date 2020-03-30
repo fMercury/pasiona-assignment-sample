@@ -6,6 +6,8 @@ const middleware = require('../../middlewares/middleware.js');
 module.exports = function (app) {
 
     app.route('/usersById')
-        .get(middleware.checkAuth, middleware.checkPassQuery, client.getUserById)
+        .get(middleware.checkAuth, middleware.checkPassQuery, async (req, res) => { 
+            return await client.getUserById(req, res); 
+        })
 
 };

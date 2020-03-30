@@ -1,6 +1,6 @@
-import getUserById from "./getUserById";
-import getUserByName from "./getUserByName";
-import getUserByPolicyNumber from "./getUserByPolicyNumber";
+const getUserById = require('./getUserById');
+const getUserByName = require('./getUserByName');
+const getUserByPolicyNumber = require('./getUserByPolicyNumber');
 
 module.exports = function (app) {
 

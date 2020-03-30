@@ -31,62 +31,56 @@ exports.auth = (req, res) => {
                     expiresIn: 60 * 60 * 24 // expires in 24 hours
                 });
 
-                console.log("http://localhost:5001/login/" + token)
-
-                //sendMail(result[0]['email'], result[0]['name'], `http://localhost:5001/login/${token}`, "Token Message", "noreply@pasiona_test.com", "noreply_pasiona_test") 
+                console.log(`http://localhost:${process.env.NODE_PORT}/loged?token=` + token)
 
                 return res.send({
-                    //'msg':"The URL with your access token was sended to your email",
-                    'URL': `http://localhost:5001/login/${token}`
+                    process: true,
+                    message: user.name + ' authorized',
+                    token: token,
+                    'route': `/loged?token=${token}`,
+                    'URL': `http://localhost:${process.env.NODE_PORT}/loged?token=${token}`
                 });
 
 
             }
         }
-        return res.send({
-            'Result': "User not found"
-        });
+        return res.status(401).send({
+            process: false,
+            message: 'Unauthorized' })
     })
 }
 
 exports.login = (req, res) => {
     try {
         const sess = req.session
-        const token = req.params.token;
+        //const token = req.params.token;
+        const token = req.query.token;
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         client.getUsers(decoded.user_data.email, clientsService.selectUsersByEmail, (result) => {
             if (result != undefined) {
                 if (result.length == 1) {
-                    // if (result[0]['token'] === token) {
-                    if (true) {
-                        // mail works, token works 
-                        if (result[0]['role'] == 'admin') {
-                            sess.admin_token = decoded
-                            sess.user_token = undefined
+                    // mail works, token works 
+                    if (result[0]['role'] == 'admin') {
+                        sess.admin_token = decoded
+                        sess.user_token = undefined
 
-                            res.redirect('/superuser');
-                        }
-                        if (result[0]['role'] == 'user') {
-                            sess.user_token = decoded
-                            sess.admin_token = undefined
-
-                            res.redirect('/normaluser');
-                        }
+                        return res.redirect('/superuser');
+                        
                     }
-                    // else{
-                    //     // mail works, token doesnt works 
-                    //     return res.send({
-                    //         'Result': "Invalid Token"
-                    //     });
-                    // }
+                    if (result[0]['role'] == 'user') {
+                        sess.user_token = decoded
+                        sess.admin_token = undefined
+
+                        return res.redirect('/normaluser');
+                        }
                 }
                 else {
                     // mail doesnt works
-                    return res.send({
-                        'Result': "Invalid User"
-                    });
-
+                    return res.status(401).send({
+                        process: false,
+                        message: 'Unauthorized'
+                    })
 
                 }
             }
@@ -95,8 +89,6 @@ exports.login = (req, res) => {
 
     }
     catch (error) {
-        return res.send({
-            'Result': "error" + error
-        });
+        return res.status(401).send({ error: error })
     }
 }

@@ -6,6 +6,8 @@ const middleware = require('../../middlewares/middleware.js');
 module.exports = function (app) {
 
     app.route('/userByPolicyNumber')
-        .get(middleware.checkAdminAuth, policy.getUserByPolicyNumber)
+        .get(middleware.checkAdminAuth, async (req, res) => {
+            return await policy.getUserByPolicyNumber(req, res);
+        })
 
 };

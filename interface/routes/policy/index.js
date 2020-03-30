@@ -1,4 +1,4 @@
-import getPoliciesByUserName from "./getPoliciesByUserName";
+const getPoliciesByUserName = require('./getPoliciesByUserName');
 
 module.exports = function (app) {
     

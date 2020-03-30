@@ -9,7 +9,7 @@ exports.getUserByPolicyNumber = (req, res) => {
                         results
                     });
                 }
-                return res.status(500).send('Error code: P02');
+                return res.status(500).send('code: P02');
             })
 }
 

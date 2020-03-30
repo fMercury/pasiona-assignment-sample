@@ -142,3 +142,17 @@ Response:
   ]
 }
 ```
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+-- POST on headers not by link
+-- test
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+-- config enviromments development testing production
+-- infraestructure / persistence / models / aggregates
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+-- diagrama de clases 
+-- diagrama de secuencia
+-- EC2015 - Dependence injection - TypeScript

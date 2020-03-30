@@ -9,6 +9,6 @@ exports.getPoliciesByUserName = (req, res) => {
                         results
                     });
                 }
-                return res.status(500).send('Error code: P01');
+                return res.status(500).send('code: P01');
             })
 }
