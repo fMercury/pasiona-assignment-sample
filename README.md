@@ -37,6 +37,11 @@ and inside project folder run
 npm install
 npm start
 ```
+and for test
+```
+npm run test
+```
+
 
 ## Solution: 
 
@@ -142,17 +147,3 @@ Response:
   ]
 }
 ```
-
-
-. . . . . . . . . . . . . . . . . . . . . . . . . . . .
--- POST on headers not by link
--- test
-
-. . . . . . . . . . . . . . . . . . . . . . . . . . . .
--- config enviromments development testing production
--- infraestructure / persistence / models / aggregates
-
-. . . . . . . . . . . . . . . . . . . . . . . . . . . .
--- diagrama de clases 
--- diagrama de secuencia
--- EC2015 - Dependence injection - TypeScript
